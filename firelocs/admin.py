@@ -1,3 +1,5 @@
 from django.contrib import admin
 
-# Register your models here.
+from firelocs.models import Incident
+
+admin.site.register(Incident)
