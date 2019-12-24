@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>🔥 FireLocs</title>
+</head>
+<body>
+	<h1>🔥 Fire Locations</h1>
+
+	<table>
+		<thead>
+			<tr>
+				<th>Where</th>
+				<th>Alert Level</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for object in object_list %}
+				<tr>
+					<th>{{ object.location }}</th>
+					<td>{{ object.alert_level }}</th>
+				</tr>
+			{% empty %}
+				<tr class="empty">
+					<td colspan="2">No fires to list.</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+</body>
+</html>
