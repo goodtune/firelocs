@@ -12,4 +12,4 @@ class IncidentAdmin(admin.ModelAdmin):
         "alert_level",
         "council_area",
     )
-    list_filter = ("fire_status", "fire_type")
+    list_filter = ("fire_status", "fire_type", "fire_agency")
