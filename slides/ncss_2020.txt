@@ -1,0 +1,141 @@
+---
+author:
+- Gary Reynolds (Optiver)
+- Edwin Steele (Optiver)
+
+title: 🔥 Firelocs NCSS Masterclass (2020)
+subtitle: A web service for bushfire data
+...
+
+---
+
+# What is this about?
+
+* Building/adapting a data-centric web service
+* Present information in several forms for humans
+* Sharing data suitable for integration with other tools
+
+---
+
+# Skills you can learn in this masterclass
+
+* Using and reworking data from a third-party webservice _(consuming a data source using Python)_
+* Publishing data in multiple formats for a browser using templates _(Django templating)_
+* Publishing data so that it can be consumed by other software _(publishing an API using Python)_
+
+---
+
+# Resources are on Github
+
+* Project and code: <https://github.com/goodtune/firelocs>
+* These slides: <https://github.com/goodtune/firelocs/slides/ncss_2020.html> (follow along!)
+
+---
+
+# Our company, Optiver
+
+* Optiver trades most stock and futures markets worldwide
+* We write our own auto-trading algorithms 
+* We're based in Sydney, Chicago, Shanghai and Amsterdam
+* <https://optiver.com>
+
+---
+
+# Our backgrounds
+
+* We both run teams of engineers at Optiver
+* Gary builds software in Python and C++ to manage our production environment _(Github: @goodtune)_
+  * Went to x, then Sydney Uni to do y.
+* Edwin builds software for our Tax and Finance departments _(Github: @edwinsteele)_
+  * Went to St Pauls Grammar (Penrith) and Macarthur Anglican (Camden), then Sydney Uni to do a Bachelor of Science (Comp.Sci + Maths)
+
+---
+
+# Structure for this morning
+
+* Background _(this stuff)_
+* High level description of the activities _(so you can go at your own pace - use the slides!)_
+* We'll run through the details of an activity when enough people are ready 
+* Ask us questions during the morning - we're here for you! :-)
+* 20 minutes of questions at the end _(about this, about tech, about careers, about Optiver, whatever...)_
+
+---
+
+# How about you?
+
+Let's go around the room:
+
+* Your school and what you had for dinner last night (was it good?)
+* Have you done any programming before this week?
+* Is there anything you're hoping to learn in this master class?
+
+---
+
+# Activities
+
+1. Setup your environment and display data in your browser (machine readable and human readable)
+2. Add fire status to the list of fires
+3. Add a view to drill down by alert level  _*Is this too complicated?*_
+4. Add latitude and longitude to the machine-readable feed
+5. Connect the map to the machine-readable feed
+
+---
+
+# Setup your environment and display data in your browser
+
+* ...
+
+---
+
+# Add fire status to the list of fires
+
+* ...
+
+---
+
+# Add a view to drill down by alert level
+
+* ...
+
+---
+
+# Add latitude and longitude to the machine-readable feed
+
+* ...
+
+---
+
+# Connect the map to the machine-readable feed
+
+* ...
+
+
+---
+
+# A step beyond...
+
+* Infinite design possibilities, but some patterns work better than others
+
+---
+
+# API design
+
+_something about the RFS data stream with its CDATA and what they could have done better_
+
+---
+
+# Consume the model or from the API
+
+_we can do a map using a model and iterating over the entries, or we can consume the API. Why would you do one over another?_
+
+---
+
+# Question time!
+
+* about this
+* about tech
+* about careers
+* about Optiver
+* whatever...
+
+---
