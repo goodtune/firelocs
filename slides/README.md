@@ -6,7 +6,7 @@ See the [output directory](output/index.html)
 
 Slides are build using pandoc (https://pandoc.org). Install pandoc with your regular package manager.
 
-Build slides with:
-`pandoc -t s5 --self-contained -o output/ncss_2020.html ncss_2020.md`
+Build slides (from the directory containing this README) with:
+`pandoc -t s5 --self-contained -o ../docs/index.html ncss_2020.md`
 
 _(see the pandoc manpage for other slide formats e.g. slidy, dzslides, revealjs)_
