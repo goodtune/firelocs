@@ -28,7 +28,7 @@ subtitle: A web service for bushfire data
 # Resources are on Github
 
 * Project and code: <https://github.com/goodtune/firelocs>
-* These slides: <https://github.com/goodtune/firelocs/slides/ncss_2020.html> (follow along!)
+* These slides: <https://goodtune.github.com/firelocs> (follow along!)
 
 ---
 
@@ -45,7 +45,7 @@ subtitle: A web service for bushfire data
 
 * We both run teams of engineers at Optiver
 * Gary builds software in Python and C++ to manage our production environment _(Github: @goodtune)_
-  * Went to x, then Sydney Uni to do y.
+  * Went to Gosford High, then Sydney Uni to do Bachelor of Computer Science & Technology.
 * Edwin builds software for our Tax and Finance departments _(Github: @edwinsteele)_
   * Went to St Pauls Grammar (Penrith) and Macarthur Anglican (Camden), then Sydney Uni to do a Bachelor of Science (Comp.Sci + Maths)
 
