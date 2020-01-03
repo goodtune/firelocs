@@ -11,6 +11,9 @@ class Incident(models.Model):
     council_area = models.CharField(max_length=255)
     alert_level = models.CharField(max_length=255)
 
+    latitude = models.DecimalField(max_digits=20, decimal_places=16, null=True)
+    longitude = models.DecimalField(max_digits=20, decimal_places=16, null=True)
+
     fire_status = models.CharField(max_length=255)
     fire_type = models.CharField(max_length=255)
     fire_size = models.PositiveIntegerField()
