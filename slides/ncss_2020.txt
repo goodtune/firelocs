@@ -54,6 +54,7 @@ subtitle: A web service for bushfire data
 # Structure for this morning
 
 * Background _(this stuff)_
+* Structure of a web app
 * High level description of the activities _(so you can go at your own pace - use the slides!)_
 * We'll run through the details of an activity when enough people are ready 
 * Ask us questions during the morning - we're here for you! :-)
@@ -81,9 +82,132 @@ Let's go around the room:
 
 ---
 
+# What we've created as a foundation
+
+* A web service in Python, using the popular Django framework
+* An importer that creates "incidents" in a database from RFS data
+* Two web _views_ based on the incidents stored in the database:
+  * a basic list of incidents for humans to read using Django _templates_
+  * A machine-readable list of incidents for software to consume _(an API)_
+
+---
+
 # Setup your environment and display data in your browser
 
-* ...
+* git clone https://github.com/goodtune/firelocs.git
+* Follow instructions at https://github.com/goodtune/firelocs
+
+---
+
+# Structure of a Django Web App
+
+![From _https://fleschenberg.net/django-architecture-diagram/_](images/django-architecture.jpg){ width=75% }
+
+---
+
+# Structure of a Django Web App - Model/ORM
+
+How we describe the properties of a thing: `firelocs/models.py`
+
+	class Incident(models.Model):
+
+	    id = models.URLField(primary_key=True)
+	    published = models.DateTimeField()
+	    title = models.CharField(max_length=255)
+
+	    location = models.CharField(max_length=255)
+	    council_area = models.CharField(max_length=255)
+	    alert_level = models.CharField(max_length=255)
+
+	    latitude = models.DecimalField(max_digits=20, decimal_places=16, null=True)
+	    longitude = models.DecimalField(max_digits=20, decimal_places=16, null=True)
+
+	    fire_status = models.CharField(max_length=255)
+	    fire_type = models.CharField(max_length=255)
+	    fire_size = models.PositiveIntegerField()
+	    fire_agency = models.CharField(max_length=255)
+
+---
+
+# Structure of a Django Web App - URL routing
+
+How we map a URL to the code that generates the response: `firelocs/urls.py`
+
+	urlpatterns = [
+	    path("", FireList.as_view()),
+	    path("json/", FireListJson.as_view()),
+	]
+
+---
+
+# Structure of a Django Web App - View/Middleware
+
+The code that actually generates the response: `firelocs/views.py`
+
+	class FireList(ListView):
+	    model = Incident
+
+
+	class FireListJson(BaseListView, View):
+	    model = Incident
+
+	    def render_to_response(self, context, **response_kwargs):
+	        data = {each["id"]: each for each in self.get_queryset().values()}
+	        return JsonResponse(data)
+
+---
+
+# Structure of a Django Web App - Template
+
+Templates are helpers to make HTML - Hooked up to the FireList view `firelocs/templates/firelocs/incident_list.html`
+
+       <table>
+          <thead>
+             <tr>
+                <th>Where</th>
+                <th>Alert Level</th>
+             </tr>
+           </thead>
+           <tbody>
+             {% for object in object_list %}
+             <tr>
+                <th>{{ object.location }}</th>
+                <td>{{ object.alert_level }}</th>
+             </tr>
+             {% empty %}
+             <tr class="empty">
+               <td colspan="2">No fires to list.</td>
+             </tr>
+             {% endfor %}
+           </tbody>
+        </table>
+
+---
+
+# Structure of a Django Web App - SQL Database
+
+The SQL database stores all the information to be loaded into Django models. `db.sqlite3`
+
+	$ sqlite3 -header -column db.sqlite3 "pragma table_info('firelocs_incident')"
+	cid         name        type          notnull     dflt_value  pk
+	----------  ----------  ------------  ----------  ----------  ----------
+	0           id          varchar(200)  1                       1
+	1           published   datetime      1                       0
+	2           title       varchar(255)  1                       0
+	3           location    varchar(255)  1                       0
+	4           council_ar  varchar(255)  1                       0
+	5           alert_leve  varchar(255)  1                       0
+	6           fire_statu  varchar(255)  1                       0
+	7           fire_type   varchar(255)  1                       0
+	8           fire_size   integer unsi  1                       0
+	9           fire_agenc  varchar(255)  1                       0
+
+
+---
+
+# Structure of a Django Web App
+
+![From _https://fleschenberg.net/django-architecture-diagram/_](images/django-architecture.jpg){ width=75% }
 
 ---
 
@@ -156,3 +280,5 @@ e.g. datatables, leaflet, bootstrap
 * whatever...
 
 ---
+
+Thanks!
