@@ -130,6 +130,23 @@ _we can do a map using a model and iterating over the entries, or we can consume
 
 ---
 
+# Don't reinvent the wheel
+
+_use off the shelf where you can, even if it means making a few compromises. maintainers will love it. you get features for free_
+e.g. datatables, leaflet, bootstrap
+
+---
+
+# Don't reinvent the wheel
+
+* When writing web services, consider a mature framework like Django and its add-ons
+* Built-in functionality includes:
+  * Form handling
+  * Exposing an API
+  * Specialised database columns like times, location (spatial) data, ranges
+
+---
+
 # Question time!
 
 * about this
