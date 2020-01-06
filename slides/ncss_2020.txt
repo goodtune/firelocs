@@ -78,9 +78,10 @@ Let's go around the room:
 
 1. Setup your environment and display data in your browser (machine readable and human readable)
 2. Add fire status to the list of fires
-3. Add a view to drill down by alert level  _*Is this too complicated?*_
-4. Add latitude and longitude to the machine-readable feed
-5. Connect the map to the machine-readable feed
+3. Fix a partially implemented view that drills down by council area
+4. Create a new view that drills down by alert level
+5. Add latitude and longitude to the machine-readable feed
+6. Connect the map to the machine-readable feed
 
 ---
 
@@ -223,9 +224,30 @@ The SQL database stores all the information to be loaded into Django models. `db
 
 ---
 
-# Add a view to drill down by alert level
+# Fix a partially implemented view that drills down by council area
 
-* ...
+This view code is in: `firelocs/views.py`
+
+	def drill_down_list(request, council_area=None):
+	    object_list = Incident.objects.all()
+	    context = {
+	        "object_list": object_list,
+	        "council_area": council_area,
+	    }
+	    return TemplateResponse(request, "firelocs/incident_drill.html", context)
+
+* Launch [http://localhost:8000/council/](http://localhost:8000/council/)
+
+* Fix the following bugs 🐛:
+  * duplicate council areas are listed
+  * the filtering isn't actually working!
+
+---
+
+# Create a new view that drills down by alert level
+
+* Based on what we learnt in the previous activity, hook up a view that filters by alert level.
+* If you're feeling particularly confident, you could also filter by both council area AND alert level.
 
 ---
 
