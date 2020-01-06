@@ -28,7 +28,9 @@ subtitle: A web service for bushfire data
 # Resources are on Github
 
 * Project and code: <https://github.com/goodtune/firelocs>
-* These slides: <https://goodtune.github.com/firelocs> (follow along!)
+* These slides: <https://goodtune.github.io/firelocs>
+
+![_follow along!_](images/slides-qr.png){ width=15% }
 
 ---
 
