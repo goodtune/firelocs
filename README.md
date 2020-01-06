@@ -2,6 +2,29 @@
 
 A project used during a 2020 [NCSS](https://ncss.edu.au/summer-school) masterclass, demonstrating a web service for [RFS](https://www.rfs.nsw.gov.au) bushfire data used. The masterclass is given by @goodtune and @edwinsteele
 
+## NCSS Bootstrap
+
+What you'll need to run to get started with this class.
+
+    cmd.exe
+
+Make sure you can run "virtualenv":
+
+    "\Program Files (x86)\Python 3.6.4\python.exe" -m pip install --user virtualenv
+    "\Program Files (x86)\Python 3.6.4\python.exe" -m virtualenv
+
+Download the project from GitHub as a ZIP file. Expand it. Change directory.
+
+    "\Program Files (x86)\Python 3.6.4\python.exe" -m virtualenv venv
+    
+From here, you should be able to follow the rest, except swap:
+
+    venv/bin/python
+
+with
+
+    venv\Scripts\python.exe
+
 ## Getting started
 
 Create a `virtualenv` in which to install the project dependencies.
