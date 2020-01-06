@@ -28,8 +28,6 @@ def summary_to_kwargs(summary):
     return {
         "location": data["LOCATION"].strip(),
         "council_area": data["COUNCIL AREA"].strip(),
-        "alert_level": data["ALERT LEVEL"].strip(),
-        "fire_status": data["STATUS"].strip(),
         "fire_type": data["TYPE"].strip(),
         "fire_size": HA_RE.search(data["SIZE"]).groups()[0],
         "fire_agency": data["RESPONSIBLE AGENCY"].strip(),
@@ -58,6 +56,7 @@ def lat_lon_from_entry(entry):
 
     # Assume it's a polygon
     return entry.where["coordinates"][0][0]
+
 
 class Command(BaseCommand):
     def add_arguments(self, parser):

@@ -12,8 +12,15 @@ subtitle: A web service for bushfire data
 # What is this about?
 
 * Building/adapting a data-centric web service
+* Integrating with a third-party data source
 * Present information in several forms for humans
 * Sharing data suitable for integration with other tools
+
+---
+
+# What is this about?
+
+![NSW Rural Fire Service - Fires Near Me](images/fires-near-me.png){ width=90% }
 
 ---
 
@@ -224,6 +231,20 @@ The SQL database stores all the information to be loaded into Django models. `db
 
 ---
 
+# Populate additional fields from the RFS data feed
+
+::: incremental
+
+* Alert level and Fire Status are exposed in the model. Let's look at the json URL to see their values
+* They're null - we populate the database using the import_fires command so make adjustments in `firelocs/management/commands/import_fires.py`
+* Check `data/demonstration.xml` for fields (and try some print statements to see what import_fires sees)
+  * Alert Level can come from two places (it is also called _Category_)
+* Check the json URL to confirm whether the values are coming through
+
+:::
+
+---
+
 # Fix a partially implemented view that drills down by council area
 
 This view code is in: `firelocs/views.py`
@@ -248,18 +269,6 @@ This view code is in: `firelocs/views.py`
 
 * Based on what we learnt in the previous activity, hook up a view that filters by alert level.
 * If you're feeling particularly confident, you could also filter by both council area AND alert level.
-
----
-
-# Add latitude and longitude to the machine-readable feed
-
-::: incremental
-
-* Lat and lon are exposed in the model. Let's look at the json URL to see their values
-* We populated using the import_fires command. Make adjustments in `firelocs/management/commands/import_fires.py`
-* Check the json URL to confirm whether the values are coming through
-
-:::
 
 ---
 
