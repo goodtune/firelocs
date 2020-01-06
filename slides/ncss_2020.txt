@@ -66,8 +66,8 @@ subtitle: A web service for bushfire data
 * Structure of a web app
 * High level description of the activities _(so you can go at your own pace - use the slides!)_
 * We'll run through the details of an activity when enough people are ready 
-* Ask us questions during the morning - we're here for you! :-)
-* 20 minutes of questions at the end _(about this, about tech, about careers, about Optiver, whatever...)_
+* Ask us questions whenever - we're here for you! :-)
+* Question time at the end _(about this, about tech, about careers, about Optiver, whatever...)_
 
 ---
 
@@ -75,7 +75,7 @@ subtitle: A web service for bushfire data
 
 Let's go around the room:
 
-* Your school and what you had for dinner last night (was it good?)
+* Your school and what you had for dinner last night _(was it good?)_
 * Have you done any programming before this week?
 * Is there anything you're hoping to learn in this master class?
 
@@ -84,11 +84,11 @@ Let's go around the room:
 # Activities
 
 1. Setup your environment and display data in your browser (machine readable and human readable)
-2. Add fire status to the list of fires
+1. Add fire status to the list of fires
+1. Populate additional fields from the RFS data feed
 3. Fix a partially implemented view that drills down by council area
 4. Create a new view that drills down by alert level
-5. Add latitude and longitude to the machine-readable feed
-6. Connect the map to the machine-readable feed
+5. Display fires as points on a map
 
 ---
 
@@ -129,8 +129,8 @@ How we describe the properties of a thing: `firelocs/models.py`
 	    council_area = models.CharField(max_length=255)
 	    alert_level = models.CharField(max_length=255)
 
-	    latitude = models.DecimalField(max_digits=20, decimal_places=16, null=True)
-	    longitude = models.DecimalField(max_digits=20, decimal_places=16, null=True)
+	    latitude = models.DecimalField(max_digits=20, decimal_places=16)
+	    longitude = models.DecimalField(max_digits=20, decimal_places=16)
 
 	    fire_status = models.CharField(max_length=255)
 	    fire_type = models.CharField(max_length=255)
@@ -240,6 +240,7 @@ The SQL database stores all the information to be loaded into Django models. `db
 * Check `data/demonstration.xml` for fields (and try some print statements to see what import_fires sees)
   * Alert Level can come from two places (it is also called _Category_)
 * Check the json URL to confirm whether the values are coming through
+* Use them in your `incidents_list.html` template (if you'd like the practice)
 
 :::
 
@@ -272,53 +273,59 @@ This view code is in: `firelocs/views.py`
 
 ---
 
-# Connect the map to the machine-readable feed
+# Display fires as points on a map
 
-* ...
+* We will use LeafletJS (<https://leafletjs.com>) for mapping
+* There is a "maps" URL which uses a template: `firelocs/templates/firelocs/map_model.html`
+* Edit this template to iterate through all the incidents and add them in the specified format
 
 ---
 
-# Extension
+# Display fires as points on a map (cont.)
+
+* Create a helpful description to be used when you click on the marker _(the popup)_
+* Use the icon styles to differentiate fires by alert level
+  * You could use conditional logic in the template (<https://docs.djangoproject.com/en/3.0/ref/templates/language/#tags>)
+  * A better approach is a method on the model that specifies the icon type based on alert level
+
+---
+
+# Extension activity
 
 _(in case you'd like to go further or finish early)_
 
-* Populate the map using model data via a template, rather than consuming the API
 * Create a sortable table using JQuery/Datatables <https://www.datatables.net/examples/data_sources/js_array.html>
+* Create a template where LeafletJS reads from the JSON API
 
 ---
 
-# A step beyond...
+# General advice
 
-* Infinite design possibilities, but some patterns work better than others
-
----
-
-# API design
-
-_something about the RFS data stream with its CDATA and what they could have done better_
+* Separate presentation logic from "business" logic
+* Don't reinvent the wheel - mature libraries help you build stuff more quickly
+  * Sometimes it won't be a perfect fit but they can still be valuable
+  * Features trickle down
+  * But sometimes building is a great way to learn from first principles
 
 ---
 
-# Consume the model or from the API
-
-_we can do a map using a model and iterating over the entries, or we can consume the API. Why would you do one over another?_
-
----
-
-# Don't reinvent the wheel
-
-_use off the shelf where you can, even if it means making a few compromises. maintainers will love it. you get features for free_
-e.g. datatables, leaflet, bootstrap
-
----
-
-# Don't reinvent the wheel
+# General advice - Don't reinvent the wheel
 
 * When writing web services, consider a mature framework like Django and its add-ons
 * Built-in functionality includes:
   * Form handling
   * Exposing an API
   * Specialised database columns like times, location (spatial) data, ranges
+* Helpful webby libraries to consider: datatables, leaflet, bootstrap
+
+---
+
+# What we saw on the way
+
+* It's hard to get important data from the RFS feed (see `import_fires.py`)
+  * Consider your users when designing APIs
+* Mature libraries and feeds can have problems. Nobody is perfect (we found one while building this)
+  * Contribute a fix!
 
 ---
 
@@ -332,4 +339,15 @@ e.g. datatables, leaflet, bootstrap
 
 ---
 
-Thanks!
+# Thanks!
+
+---
+
+# List of technologies used
+
+* Django (Python Web Framework)
+* Feedparser (Python RSS/Atom parsing library)
+* LeafletJS (Javascript mapping library)
+* Pandoc + Slidy (Slide generation)
+* Git (Version control)
+* Github (development workflow)

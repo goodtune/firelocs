@@ -92,15 +92,15 @@ Gary Reynolds (Optiver)<br />Edwin Steele (Optiver)
 <li>Structure of a web app</li>
 <li>High level description of the activities <em>(so you can go at your own pace - use the slides!)</em></li>
 <li>We’ll run through the details of an activity when enough people are ready</li>
-<li>Ask us questions during the morning - we’re here for you! :-)</li>
-<li>20 minutes of questions at the end <em>(about this, about tech, about careers, about Optiver, whatever…)</em></li>
+<li>Ask us questions whenever - we’re here for you! :-)</li>
+<li>Question time at the end <em>(about this, about tech, about careers, about Optiver, whatever…)</em></li>
 </ul>
 </div>
 <div id="how-about-you" class="slide section level1">
 <h1>How about you?</h1>
 <p>Let’s go around the room:</p>
 <ul>
-<li>Your school and what you had for dinner last night (was it good?)</li>
+<li>Your school and what you had for dinner last night <em>(was it good?)</em></li>
 <li>Have you done any programming before this week?</li>
 <li>Is there anything you’re hoping to learn in this master class?</li>
 </ul>
@@ -110,10 +110,10 @@ Gary Reynolds (Optiver)<br />Edwin Steele (Optiver)
 <ol style="list-style-type: decimal">
 <li>Setup your environment and display data in your browser (machine readable and human readable)</li>
 <li>Add fire status to the list of fires</li>
+<li>Populate additional fields from the RFS data feed</li>
 <li>Fix a partially implemented view that drills down by council area</li>
 <li>Create a new view that drills down by alert level</li>
-<li>Add latitude and longitude to the machine-readable feed</li>
-<li>Connect the map to the machine-readable feed</li>
+<li>Display fires as points on a map</li>
 </ol>
 </div>
 <div id="what-weve-created-as-a-foundation" class="slide section level1">
@@ -155,8 +155,8 @@ Gary Reynolds (Optiver)<br />Edwin Steele (Optiver)
     council_area = models.CharField(max_length=255)
     alert_level = models.CharField(max_length=255)
 
-    latitude = models.DecimalField(max_digits=20, decimal_places=16, null=True)
-    longitude = models.DecimalField(max_digits=20, decimal_places=16, null=True)
+    latitude = models.DecimalField(max_digits=20, decimal_places=16)
+    longitude = models.DecimalField(max_digits=20, decimal_places=16)
 
     fire_status = models.CharField(max_length=255)
     fire_type = models.CharField(max_length=255)
@@ -256,6 +256,7 @@ cid         name        type          notnull     dflt_value  pk
 <li>Alert Level can come from two places (it is also called <em>Category</em>)</li>
 </ul></li>
 <li>Check the json URL to confirm whether the values are coming through</li>
+<li>Use them in your <code>incidents_list.html</code> template (if you’d like the practice)</li>
 </ul>
 </div>
 </div>
@@ -285,40 +286,47 @@ cid         name        type          notnull     dflt_value  pk
 <li>If you’re feeling particularly confident, you could also filter by both council area AND alert level.</li>
 </ul>
 </div>
-<div id="connect-the-map-to-the-machine-readable-feed" class="slide section level1">
-<h1>Connect the map to the machine-readable feed</h1>
+<div id="display-fires-as-points-on-a-map" class="slide section level1">
+<h1>Display fires as points on a map</h1>
 <ul>
-<li>…</li>
+<li>We will use LeafletJS (<a href="https://leafletjs.com" class="uri">https://leafletjs.com</a>) for mapping</li>
+<li>There is a “maps” URL which uses a template: <code>firelocs/templates/firelocs/map_model.html</code></li>
+<li>Edit this template to iterate through all the incidents and add them in the specified format</li>
 </ul>
 </div>
-<div id="extension" class="slide section level1">
-<h1>Extension</h1>
+<div id="display-fires-as-points-on-a-map-cont." class="slide section level1">
+<h1>Display fires as points on a map (cont.)</h1>
+<ul>
+<li>Create a helpful description to be used when you click on the marker <em>(the popup)</em></li>
+<li>Use the icon styles to differentiate fires by alert level
+<ul>
+<li>You could use conditional logic in the template (<a href="https://docs.djangoproject.com/en/3.0/ref/templates/language/#tags" class="uri">https://docs.djangoproject.com/en/3.0/ref/templates/language/#tags</a>)</li>
+<li>A better approach is a method on the model that specifies the icon type based on alert level</li>
+</ul></li>
+</ul>
+</div>
+<div id="extension-activity" class="slide section level1">
+<h1>Extension activity</h1>
 <p><em>(in case you’d like to go further or finish early)</em></p>
 <ul>
-<li>Populate the map using model data via a template, rather than consuming the API</li>
 <li>Create a sortable table using JQuery/Datatables <a href="https://www.datatables.net/examples/data_sources/js_array.html" class="uri">https://www.datatables.net/examples/data_sources/js_array.html</a></li>
+<li>Create a template where LeafletJS reads from the JSON API</li>
 </ul>
 </div>
-<div id="a-step-beyond" class="slide section level1">
-<h1>A step beyond…</h1>
+<div id="general-advice" class="slide section level1">
+<h1>General advice</h1>
 <ul>
-<li>Infinite design possibilities, but some patterns work better than others</li>
+<li>Separate presentation logic from “business” logic</li>
+<li>Don’t reinvent the wheel - mature libraries help you build stuff more quickly
+<ul>
+<li>Sometimes it won’t be a perfect fit but they can still be valuable</li>
+<li>Features trickle down</li>
+<li>But sometimes building is a great way to learn from first principles</li>
+</ul></li>
 </ul>
 </div>
-<div id="api-design" class="slide section level1">
-<h1>API design</h1>
-<p><em>something about the RFS data stream with its CDATA and what they could have done better</em></p>
-</div>
-<div id="consume-the-model-or-from-the-api" class="slide section level1">
-<h1>Consume the model or from the API</h1>
-<p><em>we can do a map using a model and iterating over the entries, or we can consume the API. Why would you do one over another?</em></p>
-</div>
-<div id="dont-reinvent-the-wheel" class="slide section level1">
-<h1>Don’t reinvent the wheel</h1>
-<p><em>use off the shelf where you can, even if it means making a few compromises. maintainers will love it. you get features for free</em> e.g. datatables, leaflet, bootstrap</p>
-</div>
-<div id="dont-reinvent-the-wheel-1" class="slide section level1">
-<h1>Don’t reinvent the wheel</h1>
+<div id="general-advice---dont-reinvent-the-wheel" class="slide section level1">
+<h1>General advice - Don’t reinvent the wheel</h1>
 <ul>
 <li>When writing web services, consider a mature framework like Django and its add-ons</li>
 <li>Built-in functionality includes:
@@ -326,6 +334,20 @@ cid         name        type          notnull     dflt_value  pk
 <li>Form handling</li>
 <li>Exposing an API</li>
 <li>Specialised database columns like times, location (spatial) data, ranges</li>
+</ul></li>
+<li>Helpful webby libraries to consider: datatables, leaflet, bootstrap</li>
+</ul>
+</div>
+<div id="what-we-saw-on-the-way" class="slide section level1">
+<h1>What we saw on the way</h1>
+<ul>
+<li>It’s hard to get important data from the RFS feed (see <code>import_fires.py</code>)
+<ul>
+<li>Consider your users when designing APIs</li>
+</ul></li>
+<li>Mature libraries and feeds can have problems. Nobody is perfect (we found one while building this)
+<ul>
+<li>Contribute a fix!</li>
 </ul></li>
 </ul>
 </div>
@@ -339,9 +361,19 @@ cid         name        type          notnull     dflt_value  pk
 <li>whatever…</li>
 </ul>
 </div>
-<div class="slide section level1">
-
-<p>Thanks!</p>
+<div id="thanks" class="slide section level1">
+<h1>Thanks!</h1>
+</div>
+<div id="list-of-technologies-used" class="slide section level1">
+<h1>List of technologies used</h1>
+<ul>
+<li>Django (Python Web Framework)</li>
+<li>Feedparser (Python RSS/Atom parsing library)</li>
+<li>LeafletJS (Javascript mapping library)</li>
+<li>Pandoc + Slidy (Slide generation)</li>
+<li>Git (Version control)</li>
+<li>Github (development workflow)</li>
+</ul>
 </div>
 </body>
 </html>
