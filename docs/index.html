@@ -227,7 +227,13 @@ cid         name        type          notnull     dflt_value  pk
 <div id="add-fire-status-to-the-list-of-fires" class="slide section level1">
 <h1>Add fire status to the list of fires</h1>
 <ul>
-<li>…</li>
+<li>Remembering the Django architecture:
+<ol style="list-style-type: decimal">
+<li>URL Routing <code>firelocs/urls.py</code> <em>leads to</em></li>
+<li>A view <code>firelocs/views.py</code> <em>which may use</em></li>
+<li>A template (look under <code>firelocs/templates/firelocs</code>)</li>
+</ol></li>
+<li>Look in the model <code>firelocs/models.py</code> for the fields that you could include in the template</li>
 </ul>
 </div>
 <div id="add-a-view-to-drill-down-by-alert-level" class="slide section level1">
@@ -238,14 +244,26 @@ cid         name        type          notnull     dflt_value  pk
 </div>
 <div id="add-latitude-and-longitude-to-the-machine-readable-feed" class="slide section level1">
 <h1>Add latitude and longitude to the machine-readable feed</h1>
-<ul>
-<li>…</li>
+<div>
+<ul class="incremental">
+<li>Lat and lon are exposed in the model. Let’s look at the json URL to see their values</li>
+<li>We populated using the import_fires command. Make adjustments in <code>firelocs/management/commands/import_fires.py</code></li>
+<li>Check the json URL to confirm whether the values are coming through</li>
 </ul>
+</div>
 </div>
 <div id="connect-the-map-to-the-machine-readable-feed" class="slide section level1">
 <h1>Connect the map to the machine-readable feed</h1>
 <ul>
 <li>…</li>
+</ul>
+</div>
+<div id="extension" class="slide section level1">
+<h1>Extension</h1>
+<p><em>(in case you’d like to go further or finish early)</em></p>
+<ul>
+<li>Populate the map using model data via a template, rather than consuming the API</li>
+<li>Create a sortable table using JQuery/Datatables <a href="https://www.datatables.net/examples/data_sources/js_array.html" class="uri">https://www.datatables.net/examples/data_sources/js_array.html</a></li>
 </ul>
 </div>
 <div id="a-step-beyond" class="slide section level1">

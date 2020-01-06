@@ -215,7 +215,11 @@ The SQL database stores all the information to be loaded into Django models. `db
 
 # Add fire status to the list of fires
 
-* ...
+* Remembering the Django architecture:
+  1. URL Routing `firelocs/urls.py` _leads to_
+  1. A view `firelocs/views.py`  _which may use_
+  1. A template (look under `firelocs/templates/firelocs`)
+* Look in the model `firelocs/models.py` for the fields that you could include in the template
 
 ---
 
@@ -227,7 +231,13 @@ The SQL database stores all the information to be loaded into Django models. `db
 
 # Add latitude and longitude to the machine-readable feed
 
-* ...
+::: incremental
+
+* Lat and lon are exposed in the model. Let's look at the json URL to see their values
+* We populated using the import_fires command. Make adjustments in `firelocs/management/commands/import_fires.py`
+* Check the json URL to confirm whether the values are coming through
+
+:::
 
 ---
 
@@ -235,6 +245,14 @@ The SQL database stores all the information to be loaded into Django models. `db
 
 * ...
 
+---
+
+# Extension
+
+_(in case you'd like to go further or finish early)_
+
+* Populate the map using model data via a template, rather than consuming the API
+* Create a sortable table using JQuery/Datatables <https://www.datatables.net/examples/data_sources/js_array.html>
 
 ---
 
