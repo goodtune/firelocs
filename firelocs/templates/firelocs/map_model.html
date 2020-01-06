@@ -11,7 +11,6 @@
 </head>
 <body>
 	<h1>🔥 Fire Map</h1>
-	<!-- set map height -->
 	<div id="map"></div>
 
 	<script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
@@ -55,8 +54,12 @@ var firemap = L.map('map').setView([-33, 146], 6);
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 	  attribution: '&copy; <a href="https://openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 }).addTo(firemap);
-// Example marker format follows - add one of these for each incident
+// #####################################################
+// Your code goes here. Add a marker for each incident
+//
+// Example marker format follows:
 // L.marker([ -33.86, 151.21 ], { icon: emergencyIcon }).addTo(firemap).bindPopup("Populate with a description");
+// #####################################################
 	</script>
 </body>
 </html>
