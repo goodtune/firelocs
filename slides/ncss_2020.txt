@@ -84,7 +84,7 @@ Let's go around the room:
 # Activities
 
 1. Setup your environment and display data in your browser (machine readable and human readable)
-1. Add fire status to the list of fires
+1. Add fire type to the list of fires
 1. Populate additional fields from the RFS data feed
 3. Fix a partially implemented view that drills down by council area
 4. Create a new view that drills down by alert level
@@ -221,7 +221,7 @@ The SQL database stores all the information to be loaded into Django models. `db
 
 ---
 
-# Add fire status to the list of fires
+# Add fire type to the list of fires
 
 * Remembering the Django architecture:
   1. URL Routing `firelocs/urls.py` _leads to_
@@ -239,7 +239,8 @@ The SQL database stores all the information to be loaded into Django models. `db
 * They're null - we populate the database using the import_fires command so make adjustments in `firelocs/management/commands/import_fires.py`
 * Check `data/demonstration.xml` for fields (and try some print statements to see what import_fires sees)
   * Alert Level can come from two places (it is also called _Category_)
-* Check the json URL to confirm whether the values are coming through
+* Rerun the data import step (`python manage.py import_fires data/demonstration.xml`)
+* Check the JSON URL to confirm whether the values are coming through
 * Use them in your `incidents_list.html` template (if you'd like the practice)
 
 :::
