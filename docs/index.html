@@ -109,7 +109,7 @@ Gary Reynolds (Optiver)<br />Edwin Steele (Optiver)
 <h1>Activities</h1>
 <ol style="list-style-type: decimal">
 <li>Setup your environment and display data in your browser (machine readable and human readable)</li>
-<li>Add fire status to the list of fires</li>
+<li>Add fire type to the list of fires</li>
 <li>Populate additional fields from the RFS data feed</li>
 <li>Fix a partially implemented view that drills down by council area</li>
 <li>Create a new view that drills down by alert level</li>
@@ -233,8 +233,8 @@ cid         name        type          notnull     dflt_value  pk
 <p class="caption">From <em>https://fleschenberg.net/django-architecture-diagram/</em></p>
 </div>
 </div>
-<div id="add-fire-status-to-the-list-of-fires" class="slide section level1">
-<h1>Add fire status to the list of fires</h1>
+<div id="add-fire-type-to-the-list-of-fires" class="slide section level1">
+<h1>Add fire type to the list of fires</h1>
 <ul>
 <li>Remembering the Django architecture:
 <ol style="list-style-type: decimal">
@@ -255,7 +255,8 @@ cid         name        type          notnull     dflt_value  pk
 <ul class="incremental">
 <li>Alert Level can come from two places (it is also called <em>Category</em>)</li>
 </ul></li>
-<li>Check the json URL to confirm whether the values are coming through</li>
+<li>Rerun the data import step (<code>python manage.py import_fires data/demonstration.xml</code>)</li>
+<li>Check the JSON URL to confirm whether the values are coming through</li>
 <li>Use them in your <code>incidents_list.html</code> template (if you’d like the practice)</li>
 </ul>
 </div>
