@@ -1,6 +1,6 @@
 from django.http import JsonResponse
 from django.template.response import TemplateResponse
-from django.views.generic.base import View
+from django.views.generic.base import TemplateView, View
 from django.views.generic.list import BaseListView, ListView
 
 from firelocs.models import Incident
@@ -25,3 +25,11 @@ def drill_down_list(request, council_area=None):
         "council_area": council_area,
     }
     return TemplateResponse(request, "firelocs/incident_drill.html", context)
+
+class FireMap(TemplateView):
+    template_name = "firelocs/map_model.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['incident_list'] = Incident.objects.all()
+        return context
