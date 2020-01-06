@@ -1,0 +1,9 @@
+{% extends "firelocs/incident_list.html" %}
+
+{% block drill_down %}
+<ul>
+	{% for obj in object_list %}
+		<li><a href="{% url 'council' council_area=obj.council_area %}">{{ obj.council_area }}</a></li>
+	{% endfor %}
+</ul>
+{% endblock %}
